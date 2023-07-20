@@ -47,6 +47,7 @@ function checkGuess() {
 
             document.querySelector('.highscore').textContent = highscore;
             document.querySelector('.number').style = "font-size: 15rem; width: auto; height: 200px; border-radius: 30px; text-align: center;";
+            document.body.style.backgroundColor = "rgb(0, 165, 0)";
         }
         else {
 
