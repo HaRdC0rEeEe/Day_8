@@ -1,46 +1,23 @@
 'use strict';
 
-// const array1 = ["zacatek", 1, 5, 3, 5, 132, 5, 2, 1, 5, 1, "konec"];
-
-
-// function vypisPole(array) {
-//     for (let i = array.length - 1; i >= 0; i--) {
-//         console.log(array[i]);
-//     }
-// }
-
-// vypisPole(array1);
-
-// function hodKostkou() {
-//     let x = 0;
-//     for (let i = 0; i < 2; i++) {
-//         x = Math.random() * 6 + 1;
-//         console.log(Math.trunc(x));
-//     }
-// }
-
-
-
 var secret = Math.trunc(Math.random() * 20 + 1);
 
 function checkGuess() {
 
     let guessTxt = document.getElementById("guess").value;
-    let message = "";
-    let score = "";
     let messageContent = "";
     let currScore = document.querySelector('.score').textContent;
 
-    if (Number.isNaN(Number(guessTxt)))
-        document.querySelector('.message').textContent = "Zadej nějaké číslo!";
+
+    if (!document.getElementById("guess").checkValidity())
+        messageContent = "Zadej nějaké číslo!";
     else {
 
         if (guessTxt == secret) {
-            message = document.querySelector('.message').textContent = "You won!";
+            messageContent = "You won!";
             document.querySelector('.number').textContent = secret;
 
             let highscore = document.querySelector('.highscore').textContent;
-
 
             if (Number(highscore) < Number(currScore))
                 highscore = currScore;
@@ -48,6 +25,7 @@ function checkGuess() {
             document.querySelector('.highscore').textContent = highscore;
             document.querySelector('.number').style = "font-size: 15rem; width: auto; height: 200px; border-radius: 30px; text-align: center;";
             document.body.style.backgroundColor = "rgb(0, 165, 0)";
+
         }
         else {
 
@@ -55,20 +33,17 @@ function checkGuess() {
                 Number(currScore--);
                 document.querySelector('.score').textContent = currScore;
 
-                if (guessTxt < secret)
-                    messageContent = "Guess higher number";
-                else
-                    messageContent = "Guess lower number";
+                messageContent = guessTxt < secret ? "Guess higher number" : "Guess lower number";
 
-                document.querySelector('.message').textContent = messageContent;
             }
             if (currScore == 0) {
-
-                message = document.querySelector('.message').textContent = "You lost the game";
+                messageContent = "You lost the game";
                 document.body.style.backgroundColor = "rgb(128, 0, 0)";
+
             }
         }
     }
+    document.querySelector('.message').textContent = messageContent;
 
 }
 
