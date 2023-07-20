@@ -8,9 +8,9 @@ const btnsOpenModal = document.querySelectorAll('.show-modal');
 
 
 function initEventListeners() {
-    overlay.addEventListener('click', function () { hide(); })
+    overlay.addEventListener('click', hide())
 
-    closeModal.addEventListener('click', function () { hide(); })
+    closeModal.addEventListener('click', hide())
 
     document.addEventListener('keydown', evt => {
         if (evt.key === 'Escape')
