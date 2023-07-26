@@ -39,13 +39,16 @@ function swapPlayers() {
 }
 
 hold.addEventListener('click', function () {
-    let score = Number(p1Score.textContent);
+    let score = Number(getActivePlayer().querySelector('.score').textContent);
 
     let scoreElement = getActivePlayer().querySelector('.current-score').textContent;
     score += Number(scoreElement);
     getActivePlayer().querySelector('.score').textContent = score;
 
+    if (score >= 10) {
+        alert(getActivePlayer().querySelector(".name").textContent + " is a winner!");
 
+    }
 
     reset();
 
@@ -70,10 +73,9 @@ rollDiceBtn.addEventListener('click', function () {
         reset();
     }
     else {
-        let score = Number(p1Score.textContent) + Number(roll);
+        let score = Number(getActivePlayer().querySelector('.current-score').textContent);
+        score += Number(roll);
 
-        let scoreElement = getActivePlayer().querySelector('.current-score').textContent;
-        score += Number(scoreElement);
         getActivePlayer().querySelector('.current-score').textContent = score;
 
 
@@ -81,3 +83,12 @@ rollDiceBtn.addEventListener('click', function () {
 
 
 })
+
+
+newGame.addEventListener('click', function () {
+    reset();
+    document.querySelector('#score--0').textContent = 0;
+    document.querySelector('#score--1').textContent = 0;
+
+
+});
